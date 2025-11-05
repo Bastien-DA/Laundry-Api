@@ -1,8 +1,8 @@
-namespace Repositories.Laundries;
+namespace Repositories.Entities;
 
-public class Laundry
+public class LaundryEntity
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string SchemaName { get; set; }
     public string Latitude { get; set; }

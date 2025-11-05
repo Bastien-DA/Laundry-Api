@@ -1,16 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using Repositories.DbConfiguration;
-using Repositories.Laundries;
+using Repositories.Entities;
 
 namespace Repositories.LaundryDbContext;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<Laundry> Laundries { get; set; }
-    private readonly PostgresConfiguration _postgresConfiguration;
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
     {
-        optionsBuilder.UseNpgsql(_postgresConfiguration.ConnectionString);
     }
+
+    public DbSet<LaundryEntity> Laundries { get; set; }
+    public DbSet<MachineEntity> Machines { get; set; }
+    public DbSet<StatusEntity> Statuses { get; set; }
+    public DbSet<ProgramEntity> Programs { get; set; }
 }
