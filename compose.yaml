@@ -1,0 +1,7 @@
+﻿services:
+  controllers:
+    image: controllers
+    build:
+      context: .
+      dockerfile: Controllers/Dockerfile
+
