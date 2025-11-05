@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Repositories.DbConfiguration;
 using Repositories.Laundries;
 
 namespace Repositories.LaundryDbContext;
@@ -6,10 +7,10 @@ namespace Repositories.LaundryDbContext;
 public class AppDbContext : DbContext
 {
     public DbSet<Laundry> Laundries { get; set; }
-    private AppDbContext(DbContextOptions options) : base(options) { }
+    private readonly PostgresConfiguration _postgresConfiguration;
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("YourConnectionStringHere");
+        optionsBuilder.UseNpgsql(_postgresConfiguration.ConnectionString);
     }
 }
