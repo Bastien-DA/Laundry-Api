@@ -1,4 +1,4 @@
-namespace Repositories.Entities.Enum;
+namespace Repositories.Entities.Laundry.Enum;
 
 public enum TypeMachineEnum
 {

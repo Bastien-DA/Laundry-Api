@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Repositories.Entities;
+using Repositories.Entities.Laundry;
 
 namespace Repositories.LaundryDbContext;
 

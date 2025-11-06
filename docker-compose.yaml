@@ -1,6 +1,6 @@
 ﻿services:
   postgres:
-    image: postgres:latest
+    image: postgres:18
     container_name: my_postgres_db
     environment:
       POSTGRES_USER: myuser
@@ -15,7 +15,7 @@
     restart: unless-stopped
 
   pgadmin:
-    image: elestio/pgadmin:latest
+    image: dpage/pgadmin4:latest
     container_name: my_pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
