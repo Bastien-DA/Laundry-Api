@@ -7,32 +7,31 @@ public class ProgramEntity
     /// <summary>
     /// The unique identifier for the program.
     /// </summary>
-    public Guid Id { get; init; }
+    public Guid Id { get; set; }
     
     /// <summary>
     /// The name of the program.
     /// </summary>
     [MaxLength(50)]
-    public required string Name { get; init; }
+    public required string Name { get; set; }
     
     /// <summary>
     /// The temperature setting for the program.
     /// </summary>
-    public int Temperature { get; init; }
+    public int Temperature { get; set; }
     
     /// <summary>
     /// The speed setting for the program.
     /// </summary>
-    public int Speed { get; init; }
+    public int Speed { get; set; }
     
     /// <summary>
     /// The duration of the program in minutes.
     /// </summary>
-    public int Duration { get; init; }
+    public int Duration { get; set; }
     
     /// <summary>
     /// The list of machines that support this program.
     /// </summary>
-    public required List<MachineEntity> Machines { get; init; }
-    
+    public required ICollection<MachineEntity> Machines { get; set; }
 }

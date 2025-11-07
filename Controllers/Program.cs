@@ -14,14 +14,6 @@ AddLogging(builder);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-var postgresConfig = builder.Configuration.GetSection("PostgresSqlConfig").Get<PostgresConfiguration>();
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(postgresConfig!.ConnectionString, // <--- La seule différence ici
-        // Spécifie toujours l'assembly où se trouvent les migrations
-        b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

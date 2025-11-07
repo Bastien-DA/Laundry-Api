@@ -7,20 +7,35 @@ public class StatusEntity
     /// <summary>
     /// The unique identifier of the status
     /// </summary>
-    public Guid Id { get; init; }
+    public Guid Id { get; set; }
     
     /// <summary>
     /// The current status of the machine
     /// </summary>
-    public StatusEnum Status { get; init; }
+    public StatusEnum Status { get; set; }
     
     /// <summary>
     /// The DateTime when the status was last updated
     /// </summary>
-    public DateTime UpdatedAt { get; init; }
+    public DateTime UpdatedAt { get; set; }
+    
+    /// <summary>
+    /// The foreign key to the current program being executed, if any
+    /// </summary>
+    public Guid? CurrentProgramId { get; set; }
     
     /// <summary>
     /// The current program being executed by the machine, if any
     /// </summary>
-    public ProgramEntity? CurrentProgram{ get; init; }
+    public ProgramEntity? CurrentProgram { get; set; }
+    
+    /// <summary>
+    /// The machine that has this status
+    /// </summary>
+    public MachineEntity? Machine { get; set; }
+    
+    /// <summary>
+    /// The foreign key to the machine that has this status
+    /// </summary>
+    public Guid MachineId { get; set; }
 }
