@@ -9,6 +9,7 @@ public class MachineEntity
     /// <summary>
     /// The unique identifier of the machine
     /// </summary>
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     
     /// <summary>

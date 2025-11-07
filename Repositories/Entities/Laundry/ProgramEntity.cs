@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repositories.Entities.Laundry;
 
@@ -7,6 +8,7 @@ public class ProgramEntity
     /// <summary>
     /// The unique identifier for the program.
     /// </summary>
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     
     /// <summary>

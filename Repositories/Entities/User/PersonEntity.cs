@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Repositories.Entities.Laundry;
 using Repositories.Entities.User.Enum;
 
@@ -9,6 +10,7 @@ public class PersonEntity
     /// <summary>
     /// The unique identifier of the person
     /// </summary>
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     
     /// <summary>

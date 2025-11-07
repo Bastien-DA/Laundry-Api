@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Repositories.Entities.Laundry.Enum;
 
 namespace Repositories.Entities.Laundry;
@@ -7,6 +8,7 @@ public class StatusEntity
     /// <summary>
     /// The unique identifier of the status
     /// </summary>
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     
     /// <summary>
@@ -17,6 +19,7 @@ public class StatusEntity
     /// <summary>
     /// The DateTime when the status was last updated
     /// </summary>
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime UpdatedAt { get; set; }
     
     /// <summary>
