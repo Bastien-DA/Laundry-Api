@@ -1,10 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Repositories.DbConfiguration;
-using Repositories.Security;
 
 namespace Repositories.LaundryDbContext;
 
@@ -19,15 +16,11 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
             .AddJsonFile("appsettings.Development.json", optional: true)
             .Build();
         
-        var serviceLogger = 
-            NullLoggerFactory.Instance.CreateLogger<AesEncryptionService>();
-        
         var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
         new PostgresConfiguration(configuration).Connect(optionsBuilder);
 
-        IEncryptionService encryptionService = new AesEncryptionService(configuration, serviceLogger);
 
-        return new AppDbContext(optionsBuilder.Options, encryptionService);
+        return new AppDbContext(optionsBuilder.Options);
     }
 }
 
