@@ -1,0 +1,81 @@
+﻿name: Generate SDK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  generate-sdk:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout du repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Installer .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      # 3. Build l'API
+      - name: Restore and Build API
+        run: |
+          dotnet restore ./Laundry-Api.csproj
+          dotnet build ./Laundry-Api.csproj --configuration Release
+
+      # 4. Lancer l’API en arrière-plan
+      - name: Run API
+        run: |
+          dotnet run --project ./Laundry-Api.csproj --urls "http://0.0.0.0:5067" &
+          sleep 8   # attendre que l'API démarre
+
+      # 5. Récupérer le swagger.json
+      - name: Download swagger.json
+        run: |
+          curl http://localhost:5067/swagger/v1/swagger.json -o swagger.json
+
+      # 6. Installer Java pour OpenAPI Generator
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # 7. Installer OpenAPI Generator
+      - name: Install OpenAPI Generator
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.5.0/openapi-generator-cli-7.5.0.jar -O openapi-generator-cli.jar
+
+      # 8. Générer le SDK Flutter/Dart
+      - name: Generate Flutter SDK
+        run: |
+          mkdir -p sdk
+          java -jar openapi-generator-cli.jar generate \
+            -i swagger.json \
+            -g dart-dio-next \
+            -o sdk
+
+      # 9. Push sur la branche SDK
+      - name: Push to sdk branch
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          # checkout de la branche sdk (ou création)
+          git fetch origin sdk || true
+          git checkout -B sdk origin/sdk || git checkout -B sdk
+
+          rm -rf ./*
+          cp -r ../sdk/* .
+
+          git add .
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update SDK"
+            git push origin sdk --force
+          fi
