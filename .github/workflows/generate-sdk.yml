@@ -24,6 +24,7 @@ jobs:
       # 3. Build l'API
       - name: Restore and Build API
         run: |
+          cd Controllers
           dotnet restore ./Controllers.csproj
           dotnet build ./Controllers.csproj --configuration Release
 
