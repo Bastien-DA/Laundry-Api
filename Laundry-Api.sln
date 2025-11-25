@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers", "Controllers\Controllers.csproj", "{9854CAD0-7B64-4FA7-B0CA-62EA1E0BEC06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{9854CAD0-7B64-4FA7-B0CA-62EA1E0BEC06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{2B029FA4-0E5B-4E27-9293-07395252B570}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{2B029FA4-0E5B-4E27-9293-07395252B570}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{07617ED8-6639-4CCA-A975-E91A3C135318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{07617ED8-6639-4CCA-A975-E91A3C135318}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
