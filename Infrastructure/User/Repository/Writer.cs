@@ -5,7 +5,7 @@ namespace Repositories.User.Repository;
 
 public class Writer(ILogger<Writer> logger) : IWriter
 {
-    private readonly AppDbContext _db = new AppDbContextFactory().CreateDbContext();
+    private readonly AppDbContext _db = new AppDbContextFactory().CreateDbContext([]);
 
     public async Task Add(UserEntity user, CancellationToken cancellationToken)
     {

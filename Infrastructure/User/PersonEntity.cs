@@ -11,7 +11,7 @@ public class PersonEntity
     /// The unique identifier of the person
     /// </summary>
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     
     /// <summary>
     /// The username of the person

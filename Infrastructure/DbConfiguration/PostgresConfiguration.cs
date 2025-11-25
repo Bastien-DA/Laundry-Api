@@ -10,6 +10,6 @@ public class PostgresConfiguration(IConfigurationRoot configuration) : IPostgres
     public void Connect(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(ConnectionString, 
-            b => b.MigrationsAssembly("Infrastructure.LaundryDbContext"));
+            b => b.MigrationsAssembly("Infrastructure"));
     }
 }

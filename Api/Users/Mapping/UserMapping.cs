@@ -3,10 +3,8 @@ using Repositories.User;
 
 namespace Controllers.Users.Mapping;
 
-public class UserMapping(IPasswordHasher passwordHasher)
+public class UserMapping()
 {
-    private readonly IPasswordHasher _passwordHasher = passwordHasher;
-
     public static UserDto ToDto(UserEntity user)
     {
         return new UserDto
@@ -20,8 +18,10 @@ public class UserMapping(IPasswordHasher passwordHasher)
     {
         return new UserEntity
         {
+            Id = Guid.NewGuid(),
             Email = dto.Email,
-            PasswordHash = dto.Password
+            PasswordHash = dto.Password,
+            CreatedAt = DateTime.UtcNow
         };
     }
 }

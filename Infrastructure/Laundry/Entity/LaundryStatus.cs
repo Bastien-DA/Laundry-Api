@@ -9,7 +9,7 @@ public class LaundryStatus
     /// The unique identifier of the status
     /// </summary>
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     
     /// <summary>
     /// The current status of the machine

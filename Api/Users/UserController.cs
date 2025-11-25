@@ -9,10 +9,7 @@ namespace Controllers.Users;
 [ApiController]
 [Route("user")]
 public class UserController(ILogger<UserController> logger, IWriter userWriter, IPasswordHasher passwordHasher) : ControllerBase
-{ 
-    private readonly ILogger<UserController> _logger = logger;
-    private readonly IWriter _userWriter = userWriter;
-    private readonly IPasswordHasher _passwordHasher = passwordHasher;
+{
     /// <summary>
     /// The GetUsers method retrieves user information based on the provided userId.
     /// </summary>
@@ -23,7 +20,7 @@ public class UserController(ILogger<UserController> logger, IWriter userWriter, 
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetUser(int userId)
     {
-        _logger.LogInformation("Getting user with id {UserId}", userId);
+        logger.LogInformation("Getting user with id {UserId}", userId);
         return Ok($"User{userId}");
     }
 
@@ -38,8 +35,9 @@ public class UserController(ILogger<UserController> logger, IWriter userWriter, 
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult CreateUser([FromBody] UserDto user, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Creating user with name {UserName}", user);
-        _userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
+        logger.LogInformation("Creating user with name {UserName}", user);
+        user.Password = passwordHasher.GenerateHash(user.Password);
+        userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
         return NoContent();
     }
 }
