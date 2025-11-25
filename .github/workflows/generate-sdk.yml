@@ -24,13 +24,13 @@ jobs:
       # 3. Build l'API
       - name: Restore and Build API
         run: |
-          dotnet restore ./Laundry-Api.csproj
-          dotnet build ./Laundry-Api.csproj --configuration Release
+          dotnet restore ./Controllers.csproj
+          dotnet build ./Controllers.csproj --configuration Release
 
       # 4. Lancer l’API en arrière-plan
       - name: Run API
         run: |
-          dotnet run --project ./Laundry-Api.csproj --urls "http://0.0.0.0:5067" &
+          dotnet run --project ./Controllers.csproj --urls "http://0.0.0.0:5067" &
           sleep 8   # attendre que l'API démarre
 
       # 5. Récupérer le swagger.json
