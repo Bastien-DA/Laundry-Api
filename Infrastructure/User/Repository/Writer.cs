@@ -7,10 +7,11 @@ public class Writer(ILogger<Writer> logger) : IWriter
 {
     private readonly AppDbContext _db = new AppDbContextFactory().CreateDbContext([]);
 
-    public async Task Add(UserEntity user, CancellationToken cancellationToken)
+    public async Task<Guid> Add(UserEntity user, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating the user {User}", user);
         await _db.AddAsync(user, cancellationToken);
         await _db.SaveChangesAsync(cancellationToken);
+        return user.Id;
     }
 }

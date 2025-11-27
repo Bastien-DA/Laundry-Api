@@ -4,6 +4,9 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Repositories.DbConfiguration;
 using System.Reflection;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Repositories.User;
 using Repositories.User.Repository; // Nécessaire pour les commentaires XML
@@ -12,9 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 AddLogging(builder);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
+var services = builder.Services;
+
+services.AddControllers();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
@@ -35,13 +40,32 @@ builder.Services.AddSwaggerGen(options =>
     // --- Fin de l'ajout ---
 });
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+services.AddDbContext<AppDbContext>(options =>
 {
     new PostgresConfiguration(builder.Configuration).Connect(options);
 });
 
-builder.Services.AddTransient<IWriter, Writer>();
-builder.Services.AddTransient<IPasswordHasher, PasswordHasher>();
+services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty))
+        };
+    });
+
+services.AddTransient<IWriter, Writer>();
+services.AddTransient<IPasswordHasher, PasswordHasher>();
 
 var app = builder.Build();
 
@@ -61,6 +85,7 @@ app.UseHttpsRedirection();
 
 // Il vous manque l'autorisation et le mapping des contrôleurs
 app.UseAuthorization(); // Assurez-vous d'avoir l'autorisation (même basique)
+app.UseAuthentication();
 app.MapControllers();   // C'est indispensable pour que vos contrôleurs fonctionnent !
 
 app.Run();

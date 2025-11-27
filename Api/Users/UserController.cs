@@ -1,3 +1,4 @@
+using Controllers.Jwt;
 using Controllers.Users.Dto;
 using Controllers.Users.Mapping;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ namespace Controllers.Users;
 
 [ApiController]
 [Route("user")]
-public class UserController(ILogger<UserController> logger, IWriter userWriter, IPasswordHasher passwordHasher) : ControllerBase
+public class UserController(ILogger<UserController> logger, IWriter userWriter, IPasswordHasher passwordHasher, IJwtToken jwtToken) : ControllerBase
 {
     /// <summary>
     /// The GetUsers method retrieves user information based on the provided userId.
@@ -37,7 +38,7 @@ public class UserController(ILogger<UserController> logger, IWriter userWriter, 
     {
         logger.LogInformation("Creating user with name {UserName}", user);
         user.Password = passwordHasher.GenerateHash(user.Password);
-        userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
-        return NoContent();
+        var createdUser = userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
+        return Created(jwtToken.GenerateJwtToken(createdUser.ToString()!), createdUser);
     }
 }
