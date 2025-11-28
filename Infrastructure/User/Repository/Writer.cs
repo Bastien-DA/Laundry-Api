@@ -14,4 +14,15 @@ public class Writer(ILogger<Writer> logger) : IWriter
         await _db.SaveChangesAsync(cancellationToken);
         return user.Id;
     }
+    
+    public async Task Delete(Guid userId, CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Deleting the user with id {UserId}", userId);
+        var user = await _db.Users.FindAsync([userId], cancellationToken);
+        if (user != null)
+        {
+            _db.Users.Remove(user);
+            await _db.SaveChangesAsync(cancellationToken);
+        }
+    }
 }

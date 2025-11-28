@@ -36,7 +36,6 @@ public class UserController(ILogger<UserController> logger, IWriter userWriter, 
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register([FromBody] UserDto user, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating user with name {UserName}", user);
         user.Password = passwordHasher.GenerateHash(user.Password);
         var createdUser = await userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
         var jwt = new JwtDto { Token = jwtToken.GenerateJwtToken(createdUser.ToString()) };
