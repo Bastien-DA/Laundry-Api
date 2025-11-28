@@ -8,7 +8,7 @@ using Repositories.User.Repository;
 namespace Controllers.Users;
 
 [ApiController]
-[Route("user")]
+[Route("credentials")]
 public class UserController(ILogger<UserController> logger, IWriter userWriter, IPasswordHasher passwordHasher, IJwtToken jwtToken) : ControllerBase
 {
     /// <summary>
@@ -34,11 +34,12 @@ public class UserController(ILogger<UserController> logger, IWriter userWriter, 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CreateUser([FromBody] UserDto user, CancellationToken cancellationToken)
+    public async Task<IActionResult> Register([FromBody] UserDto user, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating user with name {UserName}", user);
         user.Password = passwordHasher.GenerateHash(user.Password);
-        var createdUser = userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
-        return Created(jwtToken.GenerateJwtToken(createdUser.ToString()!), createdUser);
+        var createdUser = await userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
+        var jwt = new JwtDto { Token = jwtToken.GenerateJwtToken(createdUser.ToString()) };
+        return Created($"/user/{createdUser}", jwt);    
     }
 }

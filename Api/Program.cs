@@ -5,6 +5,7 @@ using OpenTelemetry.Trace;
 using Repositories.DbConfiguration;
 using System.Reflection;
 using System.Text;
+using Controllers.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
@@ -12,6 +13,11 @@ using Repositories.User;
 using Repositories.User.Repository; // Nécessaire pour les commentaires XML
 
 var builder = WebApplication.CreateBuilder(args);
+
+IConfigurationRoot config = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .AddEnvironmentVariables()
+    .Build();
 
 AddLogging(builder);
 
@@ -64,8 +70,11 @@ services.AddAuthentication(options =>
         };
     });
 
-services.AddTransient<IWriter, Writer>();
+services.Configure<JwtSettings>(
+    builder.Configuration.GetSection(JwtSettings.SectionName));
+services.AddSingleton<IWriter, Writer>();
 services.AddTransient<IPasswordHasher, PasswordHasher>();
+services.AddTransient<IJwtToken, JwtToken>();
 
 var app = builder.Build();
 
