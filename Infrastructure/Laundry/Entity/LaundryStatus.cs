@@ -14,7 +14,7 @@ public class LaundryStatus
     /// <summary>
     /// The current status of the machine
     /// </summary>
-    public StatusEnum Status { get; set; }
+    public MachineStatusEnum Status { get; set; }
     
     /// <summary>
     /// The DateTime when the status was last updated

@@ -1,6 +1,6 @@
-namespace Repositories.Laundry.Enum;
+﻿namespace Controllers.Machines.Dto;
 
-public enum StatusEnum
+public enum MachineStatusEnumDto
 {
     /// <summary>
     /// The machine is free

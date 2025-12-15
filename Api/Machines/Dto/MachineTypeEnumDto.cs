@@ -1,12 +1,12 @@
-namespace Repositories.Laundry.Enum;
+﻿namespace Controllers.Machines.Dto;
 
-public enum TypeMachineEnum
+public enum MachineTypeEnumDto
 {
     /// <summary>
     /// Washing machine
     /// </summary>
     Washer,
-    
+
     /// <summary>
     /// Dryer machine
     /// </summary>

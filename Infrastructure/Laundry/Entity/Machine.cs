@@ -21,7 +21,7 @@ public class Machine
     /// <summary>
     /// The type of the machine
     /// </summary>
-    public TypeMachineEnum Type { get; set; }
+    public MachineTypeEnum Type { get; set; }
     
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
@@ -39,7 +39,7 @@ public class Machine
     /// <summary>
     /// The laundry that contains this machine
     /// </summary>
-    public Laundry? Laundry { get; set; }
+    public required Laundry Laundry { get; set; }
     
     /// <summary>
     /// The foreign key to the laundry that contains this machine

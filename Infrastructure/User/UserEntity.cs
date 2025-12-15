@@ -28,7 +28,7 @@ public class UserEntity
     /// <summary>
     /// The date and time when the user was created.
     /// </summary>
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
     
     /// <summary>
     /// The person associated with the user.

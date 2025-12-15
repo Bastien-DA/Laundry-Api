@@ -33,7 +33,6 @@ public class UserDto
     {
         return new UserEntity
         {
-            Id = Guid.NewGuid(),
             Email = this.Email,
             PasswordHash = this.Password,
             CreatedAt = DateTime.UtcNow
