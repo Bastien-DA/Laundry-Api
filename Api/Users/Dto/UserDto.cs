@@ -1,3 +1,4 @@
+using Repositories.User;
 using System.ComponentModel.DataAnnotations;
 
 namespace Controllers.Users.Dto;
@@ -18,4 +19,24 @@ public class UserDto
     [MinLength(6)]
     [MaxLength(50)]
     public required string Password { get; set; }
+
+    public static UserDto ToDto(UserEntity userEntity) 
+    {
+        return new UserDto
+        {
+            Email = userEntity.Email,
+            Password = userEntity.PasswordHash
+        };
+    }
+
+    public UserEntity ToEntity() 
+    {
+        return new UserEntity
+        {
+            Id = Guid.NewGuid(),
+            Email = this.Email,
+            PasswordHash = this.Password,
+            CreatedAt = DateTime.UtcNow
+        };
+    }
 }
