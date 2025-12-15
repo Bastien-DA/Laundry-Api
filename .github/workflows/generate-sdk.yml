@@ -1,4 +1,4 @@
-﻿name: Generate SDK
+name: Generate SDK
 
 on:
   push:
@@ -59,24 +59,38 @@ jobs:
             -i swagger.json \
             -g dart-dio-next \
             -o sdk
-
-      # 9. Push sur la branche SDK
-      - name: Push to sdk branch
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-          # checkout de la branche sdk (ou création)
-          git fetch origin sdk || true
-          git checkout -B sdk origin/sdk || git checkout -B sdk
-
-          rm -rf ./*
-          cp -r ../sdk/* .
-
-          git add .
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update SDK"
-            git push origin sdk --force
-          fi
+          
+        # 3) Installer Flutter (obligatoire pour flutter pub ...)
+        - name: Setup Flutter
+          uses: subosito/flutter-action@v2
+          with:
+            flutter-version: "stable"
+            cache: true
+        
+        # 4) Pub get + génération des .g.dart / .freezed etc.
+        - name: Flutter pub get + build_runner
+          working-directory: sdk
+          run: |
+            flutter --version
+            flutter pub get
+            flutter pub run build_runner build --delete-conflicting-outputs
+        
+        # 5) Push sur la branche sdk
+        - name: Push to sdk branch
+          run: |
+            git config --global user.email "github-actions@github.com"
+            git config --global user.name "GitHub Actions"
+        
+            git fetch origin sdk || true
+            git checkout -B sdk origin/sdk || git checkout -B sdk
+        
+            rm -rf ./*
+            cp -r ../sdk/* .
+        
+            git add .
+            if git diff --cached --quiet; then
+              echo "No changes to commit"
+            else
+              git commit -m "Update SDK"
+              git push origin sdk --force
+            fi
