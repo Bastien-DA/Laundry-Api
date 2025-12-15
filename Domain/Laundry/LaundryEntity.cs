@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Repositories.Laundry.Entity;
+namespace Services.Laundry;
 
 public class LaundryEntity
 {

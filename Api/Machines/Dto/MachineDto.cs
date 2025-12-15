@@ -1,5 +1,6 @@
 ﻿using Controllers.Laundries.Dto;
-using Repositories.Laundry.Entity;
+using Services.Laundry;
+using Services.Laundry.Enum;
 using System.ComponentModel.DataAnnotations;
 
 namespace Controllers.Machines.Dto;
@@ -48,7 +49,7 @@ public class MachineDto
         return new MachineEntity
         {
             Name = this.Name,
-            Type = (Repositories.Laundry.Enum.MachineTypeEnumEntity)Enum.Parse(typeof(Repositories.Laundry.Enum.MachineTypeEnumEntity), this.Type.ToString()),
+            Type = Enum.Parse<MachineTypeEnumEntity>(this.Type.ToString()),
             Price = this.Price,
             LaundryStatus = this.LaundryStatus.ToEntity(),
             Programs = [.. this.Programs.Select(p => p.ToEntity())],

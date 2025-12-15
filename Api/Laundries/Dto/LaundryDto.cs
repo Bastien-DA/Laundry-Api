@@ -1,5 +1,5 @@
 ﻿using Controllers.Machines.Dto;
-using Repositories.Laundry.Entity;
+using Services.Laundry;
 using System.ComponentModel.DataAnnotations;
 
 namespace Controllers.Laundries.Dto;

@@ -1,7 +1,7 @@
 ﻿using Controllers.Laundries.Dto;
 using Controllers.Machines.Dto;
-using Repositories.User;
-using Repositories.User.Enum;
+using Services.User;
+using Services.User.Enum;
 using System.ComponentModel.DataAnnotations;
 
 namespace Controllers.Persons.Dto;

@@ -1,4 +1,4 @@
-namespace Repositories.User.Enum;
+namespace Services.User.Enum;
 
 public enum PersonTypeEnumEntity
 {

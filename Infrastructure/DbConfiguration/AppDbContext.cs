@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Repositories.Laundry.Entity;
-using Repositories.User;
+using Services.Laundry;
+using Services.User;
 
 namespace Repositories.DbConfiguration;
 
@@ -11,7 +11,7 @@ public class AppDbContext : DbContext
     {
     }
 
-    public DbSet<Laundry.Entity.LaundryEntity> Laundries { get; set; }
+    public DbSet<LaundryEntity> Laundries { get; set; }
     public DbSet<MachineEntity> Machines { get; set; }
     public DbSet<LaundryStatusEntity> Statuses { get; set; }
     public DbSet<LaundryProgramEntity> Programs { get; set; }

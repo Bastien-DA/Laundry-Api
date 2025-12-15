@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Repositories.Laundry.Entity;
-using Repositories.User.Enum;
+using Services.Laundry;
+using Services.User.Enum;
 
-namespace Repositories.User;
+namespace Services.User;
 
 public class PersonEntity
 {
@@ -27,7 +27,7 @@ public class PersonEntity
     /// <summary>
     /// The collection of laundries associated with the person
     /// </summary>
-    public ICollection<Repositories.Laundry.Entity.LaundryEntity>? Laundries { get; set; }
+    public ICollection<LaundryEntity>? Laundries { get; set; }
 
     /// <summary>
     /// The collection of machines associated with the person

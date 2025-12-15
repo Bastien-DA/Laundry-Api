@@ -1,4 +1,5 @@
 using Repositories.User;
+using Services.User;
 using System.ComponentModel.DataAnnotations;
 
 namespace Controllers.Users.Dto;

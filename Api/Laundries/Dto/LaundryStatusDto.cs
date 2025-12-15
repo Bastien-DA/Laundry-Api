@@ -1,6 +1,7 @@
 ﻿using Controllers.Machines.Dto;
-using Repositories.Laundry.Entity;
-using Repositories.Laundry.Enum;
+
+using Services.Laundry;
+using Services.Laundry.Enum;
 
 namespace Controllers.Laundries.Dto;
 

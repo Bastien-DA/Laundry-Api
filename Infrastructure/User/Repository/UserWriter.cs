@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Repositories.DbConfiguration;
+using Services.User;
 
 namespace Repositories.User.Repository;
 

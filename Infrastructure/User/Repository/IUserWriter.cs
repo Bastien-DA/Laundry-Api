@@ -1,3 +1,5 @@
+using Services.User;
+
 namespace Repositories.User.Repository;
 
 public interface IUserWriter
