@@ -1,6 +1,5 @@
 using Controllers.Jwt;
 using Controllers.Users.Dto;
-using Controllers.Users.Mapping;
 using Microsoft.AspNetCore.Mvc;
 using Repositories.User;
 using Repositories.User.Repository;
@@ -37,7 +36,7 @@ public class UserController(ILogger<UserController> logger, IWriter userWriter, 
     public async Task<IActionResult> Register([FromBody] UserDto user, CancellationToken cancellationToken)
     {
         user.Password = passwordHasher.GenerateHash(user.Password);
-        var createdUser = await userWriter.Add(UserMapping.ToEntity(user), cancellationToken);
+        var createdUser = await userWriter.Add(user.ToEntity(), cancellationToken);
         var jwt = new JwtDto { Token = jwtToken.GenerateJwtToken(createdUser.ToString()) };
         return Created($"/user/{createdUser}", jwt);    
     }
