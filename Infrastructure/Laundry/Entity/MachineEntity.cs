@@ -4,43 +4,43 @@ using Repositories.Laundry.Enum;
 
 namespace Repositories.Laundry.Entity;
 
-public class Machine
+public class MachineEntity
 {
     /// <summary>
     /// The unique identifier of the machine
     /// </summary>
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; } =  Guid.NewGuid();
-    
+    public Guid Id { get; set; } = Guid.NewGuid();
+
     /// <summary>
     /// The name of the machine
     /// </summary>
     [MaxLength(50)]
     public required string Name { get; set; }
-    
+
     /// <summary>
     /// The type of the machine
     /// </summary>
-    public MachineTypeEnum Type { get; set; }
-    
+    public MachineTypeEnumEntity Type { get; set; }
+
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
-    
+
     /// <summary>
     /// The current status of the machine
     /// </summary>
-    public required LaundryStatus LaundryStatus { get; set; }
-    
+    public required LaundryStatusEntity LaundryStatus { get; set; }
+
     /// <summary>
     /// The list of programs supported by the machine
     /// </summary>
-    public required ICollection<LaundryProgram> Programs { get; set; }
-    
+    public required ICollection<LaundryProgramEntity> Programs { get; set; }
+
     /// <summary>
     /// The laundry that contains this machine
     /// </summary>
-    public required Laundry Laundry { get; set; }
-    
+    public required LaundryEntity Laundry { get; set; }
+
     /// <summary>
     /// The foreign key to the laundry that contains this machine
     /// </summary>

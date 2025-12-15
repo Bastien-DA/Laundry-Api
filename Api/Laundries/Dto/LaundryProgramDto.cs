@@ -34,9 +34,9 @@ public class LaundryProgramDto
     public required ICollection<MachineDto> Machines { get; set; }
 
 
-    public LaundryProgram ToEntity()
+    public LaundryProgramEntity ToEntity()
     {
-        return new LaundryProgram
+        return new LaundryProgramEntity
         {
             Name = this.Name,
             Temperature = this.Temperature,

@@ -9,7 +9,7 @@ public class PostgresConfiguration(IConfigurationRoot configuration) : IPostgres
 
     public void Connect(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(ConnectionString, 
+        optionsBuilder.UseNpgsql(ConnectionString,
             b => b.MigrationsAssembly("Infrastructure"));
     }
 }

@@ -11,10 +11,10 @@ public class AppDbContext : DbContext
     {
     }
 
-    public DbSet<Laundry.Entity.Laundry> Laundries { get; set; }
-    public DbSet<Machine> Machines { get; set; }
-    public DbSet<LaundryStatus> Statuses { get; set; }
-    public DbSet<LaundryProgram> Programs { get; set; }
+    public DbSet<Laundry.Entity.LaundryEntity> Laundries { get; set; }
+    public DbSet<MachineEntity> Machines { get; set; }
+    public DbSet<LaundryStatusEntity> Statuses { get; set; }
+    public DbSet<LaundryProgramEntity> Programs { get; set; }
     public DbSet<PersonEntity> Persons { get; set; }
     public DbSet<UserEntity> Users { get; set; }
 }

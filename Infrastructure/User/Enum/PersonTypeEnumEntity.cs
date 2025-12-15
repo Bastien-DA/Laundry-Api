@@ -1,6 +1,6 @@
 namespace Repositories.User.Enum;
 
-public enum PersonTypeEnum
+public enum PersonTypeEnumEntity
 {
     /// <summary>
     /// The person is a laundry service provider

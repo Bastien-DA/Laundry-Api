@@ -21,11 +21,11 @@ public class LaundryStatusDto
     /// </summary>
     public MachineDto? Machine { get; set; }
 
-    public LaundryStatus ToEntity()
+    public LaundryStatusEntity ToEntity()
     {
-        return new LaundryStatus
+        return new LaundryStatusEntity
         {
-            Status = Enum.Parse<MachineStatusEnum>(this.Status.ToString()),
+            Status = Enum.Parse<MachineStatusEnumEntity>(this.Status.ToString()),
             CurrentProgram = this.CurrentProgram?.ToEntity(),
             Machine = this.Machine?.ToEntity(),
         };

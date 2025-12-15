@@ -11,7 +11,7 @@ public class UserDto
     [Required]
     [MaxLength(100)]
     public required string Email { get; set; }
-    
+
     /// <summary>
     /// The password of the user.
     /// </summary>
@@ -20,7 +20,7 @@ public class UserDto
     [MaxLength(50)]
     public required string Password { get; set; }
 
-    public static UserDto ToDto(UserEntity userEntity) 
+    public static UserDto ToDto(UserEntity userEntity)
     {
         return new UserDto
         {
@@ -29,7 +29,7 @@ public class UserDto
         };
     }
 
-    public UserEntity ToEntity() 
+    public UserEntity ToEntity()
     {
         return new UserEntity
         {

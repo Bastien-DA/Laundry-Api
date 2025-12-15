@@ -43,12 +43,12 @@ public class MachineDto
     [Required]
     public required LaundryDto Laundry { get; set; }
 
-    public Machine ToEntity()
+    public MachineEntity ToEntity()
     {
-        return new Machine
+        return new MachineEntity
         {
             Name = this.Name,
-            Type = (Repositories.Laundry.Enum.MachineTypeEnum)Enum.Parse(typeof(Repositories.Laundry.Enum.MachineTypeEnum), this.Type.ToString()),
+            Type = (Repositories.Laundry.Enum.MachineTypeEnumEntity)Enum.Parse(typeof(Repositories.Laundry.Enum.MachineTypeEnumEntity), this.Type.ToString()),
             Price = this.Price,
             LaundryStatus = this.LaundryStatus.ToEntity(),
             Programs = [.. this.Programs.Select(p => p.ToEntity())],

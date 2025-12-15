@@ -39,9 +39,9 @@ public class LaundryDto
     /// </summary>
     public ICollection<MachineDto>? Machines { get; set; }
 
-    public Laundry ToEntity()
+    public LaundryEntity ToEntity()
     {
-        return new Laundry
+        return new LaundryEntity
         {
             Name = this.Name,
             Hours = this.Hours,
@@ -51,7 +51,7 @@ public class LaundryDto
             CreatedAt = DateTime.UtcNow,
             Machines = this.Machines != null
                 ? [.. this.Machines.Select(m => m.ToEntity())]
-                : new List<Machine>(),
+                : new List<MachineEntity>(),
         };
     }
 }

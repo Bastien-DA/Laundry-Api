@@ -1,6 +1,5 @@
 ﻿using Controllers.Laundries.Dto;
 using Controllers.Machines.Dto;
-using Repositories.Laundry.Enum;
 using Repositories.User;
 using Repositories.User.Enum;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +34,7 @@ public class PersonDto
         return new PersonEntity
         {
             Username = this.Username,
-            PersonType = this.PersonType.HasValue ? (PersonTypeEnum)this.PersonType.Value : PersonTypeEnum.User,
+            PersonType = this.PersonType.HasValue ? (PersonTypeEnumEntity)this.PersonType.Value : PersonTypeEnumEntity.User,
             Laundries = this.Laundries?.Select(laundryDto => laundryDto.ToEntity()).ToList(),
             Machines = this.Machines?.Select(machineDto => machineDto.ToEntity()).ToList()
         };

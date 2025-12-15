@@ -3,7 +3,7 @@ using Repositories.DbConfiguration;
 
 namespace Repositories.User.Repository;
 
-public class Writer(ILogger<Writer> logger) : IWriter
+public class UserWriter(ILogger<UserWriter> logger) : IUserWriter
 {
     private readonly AppDbContext _db = new AppDbContextFactory().CreateDbContext([]);
 
@@ -14,7 +14,7 @@ public class Writer(ILogger<Writer> logger) : IWriter
         await _db.SaveChangesAsync(cancellationToken);
         return user.Id;
     }
-    
+
     public async Task Delete(Guid userId, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting the user with id {UserId}", userId);

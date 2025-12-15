@@ -1,6 +1,6 @@
 namespace Repositories.User.Repository;
 
-public interface IWriter
+public interface IUserWriter
 {
     public Task<Guid> Add(UserEntity user, CancellationToken cancellationToken);
 }

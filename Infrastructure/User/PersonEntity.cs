@@ -12,25 +12,25 @@ public class PersonEntity
     /// </summary>
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; } = Guid.NewGuid();
-    
+
     /// <summary>
     /// The username of the person
     /// </summary>
     [MaxLength(50)]
     public required string Username { get; set; }
-    
+
     /// <summary>
     /// The type of the person
     /// </summary>
-    public required PersonTypeEnum PersonType { get; set; }
-    
+    public required PersonTypeEnumEntity PersonType { get; set; }
+
     /// <summary>
     /// The collection of laundries associated with the person
     /// </summary>
-    public ICollection<Repositories.Laundry.Entity.Laundry>? Laundries { get; set; }
-    
+    public ICollection<Repositories.Laundry.Entity.LaundryEntity>? Laundries { get; set; }
+
     /// <summary>
     /// The collection of machines associated with the person
     /// </summary>
-    public ICollection<Machine>? Machines { get; set; }
+    public ICollection<MachineEntity>? Machines { get; set; }
 }
