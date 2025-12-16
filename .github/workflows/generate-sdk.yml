@@ -25,6 +25,7 @@ jobs:
       - name: Restore and Build API
         run: |
           cd Api
+          ls -al
           dotnet restore ./Api.csproj
           dotnet build ./Api.csproj --configuration Release
 
@@ -32,7 +33,7 @@ jobs:
       - name: Run API
         run: |
           dotnet run --project ./Api.csproj --urls "http://0.0.0.0:5067" &
-          sleep 20   # attendre que l'API démarre
+          sleep 8   # attendre que l'API démarre
 
       # 5. Récupérer le swagger.json
       - name: Download swagger.json
