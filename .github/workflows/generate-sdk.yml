@@ -59,7 +59,8 @@ jobs:
           java -jar openapi-generator-cli.jar generate \
             -i swagger.json \
             -g dart-dio \
-            -o sdk
+            -o sdk \
+            --global-property modelTests=false,apiTests=false --additional-properties enumUnknownDefaultCase=true,generateAliasAsModel=false,useEnumExtension=true,removeEnumValuePrefix=false,fieldNamingPolicy=original
           
       # 3) Installer Flutter (obligatoire pour flutter pub ...)
       - name: Setup Flutter
