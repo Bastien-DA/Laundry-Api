@@ -60,7 +60,7 @@ jobs:
             -i swagger.json \
             -g dart-dio \
             -o sdk \
-            --global-property modelTests=false,apiTests=false --additional-properties=serializationLibrary=json_serializable enumUnknownDefaultCase=true,generateAliasAsModel=false,useEnumExtension=true,removeEnumValuePrefix=false,fieldNamingPolicy=original
+            --additional-properties=serializationLibrary=json_serializable
           
       # 3) Installer Flutter (obligatoire pour flutter pub ...)
       - name: Setup Flutter
