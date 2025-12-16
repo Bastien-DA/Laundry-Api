@@ -25,13 +25,13 @@ jobs:
       - name: Restore and Build API
         run: |
           cd Api
-          ls -al
           dotnet restore ./Api.csproj
           dotnet build ./Api.csproj --configuration Release
 
       # 4. Lancer l’API en arrière-plan
       - name: Run API
         run: |
+          cd Api
           dotnet run --project ./Api.csproj --urls "http://0.0.0.0:5067" &
           sleep 8   # attendre que l'API démarre
 
