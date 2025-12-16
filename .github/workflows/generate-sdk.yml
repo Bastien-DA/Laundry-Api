@@ -75,7 +75,12 @@ jobs:
           flutter --version
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
-      
+
+      - name: Save SDK outside repo
+        run: |
+          rm -rf /tmp/sdk
+          cp -r sdk /tmp/sdk
+    
       # 5) Push sur la branche sdk
       - name: Push to sdk branch
         run: |
@@ -94,7 +99,7 @@ jobs:
       
           # Nettoie la branche sdk et copie le contenu généré
           rm -rf ./*
-          cp -r ./sdk/* .
+          cp -r /tmp/sdk/* .
       
           git add .
           if git diff --cached --quiet; then
