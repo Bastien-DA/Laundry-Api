@@ -3,8 +3,6 @@
 //
 
 import 'package:dio/dio.dart';
-import 'package:built_value/serializer.dart';
-import 'package:openapi/src/serializers.dart';
 import 'package:openapi/src/auth/api_key_auth.dart';
 import 'package:openapi/src/auth/basic_auth.dart';
 import 'package:openapi/src/auth/bearer_auth.dart';
@@ -16,14 +14,11 @@ class Openapi {
   static const String basePath = r'http://localhost';
 
   final Dio dio;
-  final Serializers serializers;
-
   Openapi({
     Dio? dio,
-    Serializers? serializers,
     String? basePathOverride,
     List<Interceptor>? interceptors,
-  })  : this.serializers = serializers ?? standardSerializers,
+  })  : 
         this.dio = dio ??
             Dio(BaseOptions(
               baseUrl: basePathOverride ?? basePath,
@@ -69,12 +64,12 @@ class Openapi {
   /// Get PersonApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   PersonApi getPersonApi() {
-    return PersonApi(dio, serializers);
+    return PersonApi(dio);
   }
 
   /// Get UserApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   UserApi getUserApi() {
-    return UserApi(dio, serializers);
+    return UserApi(dio);
   }
 }

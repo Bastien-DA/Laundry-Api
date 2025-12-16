@@ -3,185 +3,120 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'problem_details.g.dart';
 
-/// ProblemDetails
-///
-/// Properties:
-/// * [type] 
-/// * [title] 
-/// * [status] 
-/// * [detail] 
-/// * [instance] 
-@BuiltValue()
-abstract class ProblemDetails implements Built<ProblemDetails, ProblemDetailsBuilder> {
-  @BuiltValueField(wireName: r'type')
-  JsonObject? get type;
 
-  @BuiltValueField(wireName: r'title')
-  JsonObject? get title;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProblemDetails {
+  /// Returns a new [ProblemDetails] instance.
+  ProblemDetails({
 
-  @BuiltValueField(wireName: r'status')
-  JsonObject? get status;
+     this.type,
 
-  @BuiltValueField(wireName: r'detail')
-  JsonObject? get detail;
+     this.title,
 
-  @BuiltValueField(wireName: r'instance')
-  JsonObject? get instance;
+     this.status,
 
-  ProblemDetails._();
+     this.detail,
 
-  factory ProblemDetails([void updates(ProblemDetailsBuilder b)]) = _$ProblemDetails;
+     this.instance,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProblemDetailsBuilder b) => b;
+  @JsonKey(
+    
+    name: r'type',
+    required: false,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProblemDetails> get serializer => _$ProblemDetailsSerializer();
-}
 
-class _$ProblemDetailsSerializer implements PrimitiveSerializer<ProblemDetails> {
-  @override
-  final Iterable<Type> types = const [ProblemDetails, _$ProblemDetails];
+  final String? type;
 
-  @override
-  final String wireName = r'ProblemDetails';
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProblemDetails object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.title != null) {
-      yield r'title';
-      yield serializers.serialize(
-        object.title,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.status != null) {
-      yield r'status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.detail != null) {
-      yield r'detail';
-      yield serializers.serialize(
-        object.detail,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.instance != null) {
-      yield r'instance';
-      yield serializers.serialize(
-        object.instance,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-  }
 
-  @override
-  Object serialize(
-    Serializers serializers,
-    ProblemDetails object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  @JsonKey(
+    
+    name: r'title',
+    required: false,
+    includeIfNull: false,
+  )
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProblemDetailsBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.type = valueDes;
-          break;
-        case r'title':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.title = valueDes;
-          break;
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.status = valueDes;
-          break;
-        case r'detail':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.detail = valueDes;
-          break;
-        case r'instance':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.instance = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+
+  final String? title;
+
+
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? status;
+
+
+
+  @JsonKey(
+    
+    name: r'detail',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? detail;
+
+
+
+  @JsonKey(
+    
+    name: r'instance',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? instance;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProblemDetails &&
+      other.type == type &&
+      other.title == title &&
+      other.status == status &&
+      other.detail == detail &&
+      other.instance == instance;
+
+    @override
+    int get hashCode =>
+        (type == null ? 0 : type.hashCode) +
+        (title == null ? 0 : title.hashCode) +
+        (status == null ? 0 : status.hashCode) +
+        (detail == null ? 0 : detail.hashCode) +
+        (instance == null ? 0 : instance.hashCode);
+
+  factory ProblemDetails.fromJson(Map<String, dynamic> json) => _$ProblemDetailsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProblemDetailsToJson(this);
 
   @override
-  ProblemDetails deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProblemDetailsBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
+
 }
 

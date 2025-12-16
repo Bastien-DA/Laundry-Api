@@ -3,99 +3,80 @@
 part of 'user_dto.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UserDto extends UserDto {
-  @override
-  final JsonObject? email;
-  @override
-  final JsonObject? password;
+abstract class _$UserDtoCWProxy {
+  UserDto email(String email);
 
-  factory _$UserDto([void Function(UserDtoBuilder)? updates]) =>
-      (UserDtoBuilder()..update(updates))._build();
+  UserDto password(String password);
 
-  _$UserDto._({this.email, this.password}) : super._();
-  @override
-  UserDto rebuild(void Function(UserDtoBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// UserDto(...).copyWith(id: 12, name: "My name")
+  /// ````
+  UserDto call({String email, String password});
+}
 
-  @override
-  UserDtoBuilder toBuilder() => UserDtoBuilder()..replace(this);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUserDto.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUserDto.copyWith.fieldName(...)`
+class _$UserDtoCWProxyImpl implements _$UserDtoCWProxy {
+  const _$UserDtoCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UserDto &&
-        email == other.email &&
-        password == other.password;
-  }
+  final UserDto _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, email.hashCode);
-    _$hash = $jc(_$hash, password.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UserDto email(String email) => this(email: email);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UserDto')
-          ..add('email', email)
-          ..add('password', password))
-        .toString();
+  UserDto password(String password) => this(password: password);
+
+  @override
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// UserDto(...).copyWith(id: 12, name: "My name")
+  /// ````
+  UserDto call({
+    Object? email = const $CopyWithPlaceholder(),
+    Object? password = const $CopyWithPlaceholder(),
+  }) {
+    return UserDto(
+      email: email == const $CopyWithPlaceholder()
+          ? _value.email
+          // ignore: cast_nullable_to_non_nullable
+          : email as String,
+      password: password == const $CopyWithPlaceholder()
+          ? _value.password
+          // ignore: cast_nullable_to_non_nullable
+          : password as String,
+    );
   }
 }
 
-class UserDtoBuilder implements Builder<UserDto, UserDtoBuilder> {
-  _$UserDto? _$v;
-
-  JsonObject? _email;
-  JsonObject? get email => _$this._email;
-  set email(JsonObject? email) => _$this._email = email;
-
-  JsonObject? _password;
-  JsonObject? get password => _$this._password;
-  set password(JsonObject? password) => _$this._password = password;
-
-  UserDtoBuilder() {
-    UserDto._defaults(this);
-  }
-
-  UserDtoBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _email = $v.email;
-      _password = $v.password;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UserDto other) {
-    _$v = other as _$UserDto;
-  }
-
-  @override
-  void update(void Function(UserDtoBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UserDto build() => _build();
-
-  _$UserDto _build() {
-    final _$result = _$v ??
-        _$UserDto._(
-          email: email,
-          password: password,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $UserDtoCopyWith on UserDto {
+  /// Returns a callable class that can be used as follows: `instanceOfUserDto.copyWith(...)` or like so:`instanceOfUserDto.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UserDtoCWProxy get copyWith => _$UserDtoCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('UserDto', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['email', 'password']);
+      final val = UserDto(
+        email: $checkedConvert('email', (v) => v as String),
+        password: $checkedConvert('password', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
+  'email': instance.email,
+  'password': instance.password,
+};

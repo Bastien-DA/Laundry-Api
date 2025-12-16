@@ -4,10 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/problem_details.dart';
 import 'package:openapi/src/model/user_dto.dart';
 
@@ -15,9 +16,7 @@ class UserApi {
 
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const UserApi(this._dio, this._serializers);
+  const UserApi(this._dio);
 
   /// credentialsPost
   /// 
@@ -65,9 +64,7 @@ class UserApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UserDto);
-      _bodyData = userDto == null ? null : _serializers.serialize(userDto, specifiedType: _type);
-
+_bodyData=jsonEncode(userDto);
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -115,7 +112,7 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/credentials/{userId}'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(int)).toString());
+    final _path = r'/credentials/{userId}'.replaceAll('{' r'userId' '}', userId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
