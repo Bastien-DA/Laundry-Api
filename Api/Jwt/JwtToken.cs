@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Controllers.Jwt;
+namespace Api.Jwt;
 
 public class JwtToken(IOptions<JwtSettings> jwtSettings) : IJwtToken
 {

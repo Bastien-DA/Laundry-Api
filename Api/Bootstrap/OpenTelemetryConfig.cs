@@ -3,7 +3,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Controllers.Bootstrap;
+namespace Api.Bootstrap;
 
 public static class OpenTelemetryConfig
 {

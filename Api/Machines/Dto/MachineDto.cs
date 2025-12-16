@@ -1,9 +1,9 @@
-﻿using Controllers.Laundries.Dto;
-using Services.Laundry;
-using Services.Laundry.Enum;
+﻿using Api.Laundries.Dto;
+using Domain.Laundry;
+using Domain.Laundry.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace Controllers.Machines.Dto;
+namespace Api.Machines.Dto;
 
 public class MachineDto
 {

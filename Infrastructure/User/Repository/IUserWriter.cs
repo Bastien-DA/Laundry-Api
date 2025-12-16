@@ -1,6 +1,6 @@
-using Services.User;
+using Domain.User;
 
-namespace Repositories.User.Repository;
+namespace Infrastructure.User.Repository;
 
 public interface IUserWriter
 {

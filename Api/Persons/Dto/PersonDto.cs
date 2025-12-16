@@ -1,10 +1,10 @@
-﻿using Controllers.Laundries.Dto;
-using Controllers.Machines.Dto;
-using Services.User;
-using Services.User.Enum;
+﻿using Api.Laundries.Dto;
+using Api.Machines.Dto;
+using Domain.User;
+using Domain.User.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace Controllers.Persons.Dto;
+namespace Api.Persons.Dto;
 
 public class PersonDto
 {

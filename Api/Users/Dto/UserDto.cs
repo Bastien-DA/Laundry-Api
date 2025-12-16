@@ -1,8 +1,8 @@
+using Domain.User;
 using Repositories.User;
-using Services.User;
 using System.ComponentModel.DataAnnotations;
 
-namespace Controllers.Users.Dto;
+namespace Api.Users.Dto;
 
 public class UserDto
 {

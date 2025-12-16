@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Repositories.DbConfiguration;
+namespace Infrastructure.DbConfiguration;
 
 public class PostgresConfiguration(IConfigurationRoot configuration) : IPostgresConfiguration
 {

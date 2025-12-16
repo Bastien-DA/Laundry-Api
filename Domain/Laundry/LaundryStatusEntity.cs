@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Services.Laundry.Enum;
+using Domain.Laundry.Enum;
 
-namespace Services.Laundry;
+namespace Domain.Laundry;
 
 public class LaundryStatusEntity
 {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Repositories.DbConfiguration;
+namespace Infrastructure.DbConfiguration;
 
 public interface IPostgresConfiguration
 {

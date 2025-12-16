@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Controllers.Persons;
+namespace Api.Persons;
 
 [Authorize]
 [ApiController]

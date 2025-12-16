@@ -1,8 +1,8 @@
+using Domain.Laundry;
+using Domain.User;
 using Microsoft.EntityFrameworkCore;
-using Services.Laundry;
-using Services.User;
 
-namespace Repositories.DbConfiguration;
+namespace Infrastructure.DbConfiguration;
 
 public class AppDbContext : DbContext
 {

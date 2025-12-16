@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
-        <RootNamespace>Services</RootNamespace>
+        <RootNamespace>Domain</RootNamespace>
     </PropertyGroup>
 
 	<ItemGroup>

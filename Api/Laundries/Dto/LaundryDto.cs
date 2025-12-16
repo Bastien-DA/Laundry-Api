@@ -1,8 +1,8 @@
-﻿using Controllers.Machines.Dto;
-using Services.Laundry;
+﻿using Api.Machines.Dto;
+using Domain.Laundry;
 using System.ComponentModel.DataAnnotations;
 
-namespace Controllers.Laundries.Dto;
+namespace Api.Laundries.Dto;
 
 public class LaundryDto
 {

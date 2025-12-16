@@ -1,9 +1,9 @@
-﻿using Controllers.Jwt;
+﻿using Api.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Controllers.Bootstrap;
+namespace Api.Bootstrap;
 
 public static class Authentication
 {

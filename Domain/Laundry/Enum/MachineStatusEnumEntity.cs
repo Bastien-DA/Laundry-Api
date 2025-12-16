@@ -1,4 +1,4 @@
-namespace Services.Laundry.Enum;
+namespace Domain.Laundry.Enum;
 
 public enum MachineStatusEnumEntity
 {

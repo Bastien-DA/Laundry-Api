@@ -1,9 +1,8 @@
-﻿using Controllers.Machines.Dto;
+﻿using Api.Machines.Dto;
+using Domain.Laundry;
+using Domain.Laundry.Enum;
 
-using Services.Laundry;
-using Services.Laundry.Enum;
-
-namespace Controllers.Laundries.Dto;
+namespace Api.Laundries.Dto;
 
 public class LaundryStatusDto
 {

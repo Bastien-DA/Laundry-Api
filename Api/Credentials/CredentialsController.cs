@@ -1,15 +1,16 @@
-using Api.Jwt;
+﻿using Api.Jwt;
 using Api.Users.Dto;
 using Infrastructure.User;
 using Infrastructure.User.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Users;
+namespace Api.Credentials
+;
 
 [ApiController]
 [Route("credentials")]
-public class UserController(ILogger<UserController> logger, IUserWriter userWriter, IPasswordHasher passwordHasher, IJwtToken jwtToken) : ControllerBase
+public class CredentialsController(ILogger<CredentialsController> logger, IUserWriter userWriter, IPasswordHasher passwordHasher, IJwtToken jwtToken) : ControllerBase
 {
     /// <summary>
     /// The GetUsers method retrieves user information based on the provided userId.

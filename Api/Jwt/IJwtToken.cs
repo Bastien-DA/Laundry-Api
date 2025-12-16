@@ -1,4 +1,4 @@
-﻿namespace Controllers.Jwt;
+﻿namespace Api.Jwt;
 
 public interface IJwtToken
 {

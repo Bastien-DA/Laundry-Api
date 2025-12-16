@@ -1,4 +1,4 @@
-namespace Repositories.User;
+namespace Infrastructure.User;
 
 public interface IPasswordHasher
 {

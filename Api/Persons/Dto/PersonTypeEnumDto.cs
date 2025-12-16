@@ -1,4 +1,4 @@
-﻿namespace Controllers.Persons.Dto;
+﻿namespace Api.Persons.Dto;
 
 public enum PersonTypeEnumDto
 {

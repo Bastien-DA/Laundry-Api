@@ -1,8 +1,9 @@
+using Domain.User;
+using Infrastructure.DbConfiguration;
 using Microsoft.Extensions.Logging;
 using Repositories.DbConfiguration;
-using Services.User;
 
-namespace Repositories.User.Repository;
+namespace Infrastructure.User.Repository;
 
 public class UserWriter(ILogger<UserWriter> logger) : IUserWriter
 {

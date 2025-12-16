@@ -1,4 +1,4 @@
-﻿namespace Controllers.Machines.Dto;
+﻿namespace Api.Machines.Dto;
 
 public enum MachineTypeEnumDto
 {

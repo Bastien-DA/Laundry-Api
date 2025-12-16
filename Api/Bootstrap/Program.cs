@@ -1,8 +1,8 @@
-using Repositories.DbConfiguration;
-using Controllers.Jwt;
-using Repositories.User;
-using Repositories.User.Repository;
-using Controllers.Bootstrap; // Nécessaire pour les commentaires XML
+using Api.Bootstrap;
+using Api.Jwt;
+using Infrastructure.User;
+using Infrastructure.DbConfiguration;
+using Infrastructure.User.Repository; // Nécessaire pour les commentaires XML
 
 var builder = WebApplication.CreateBuilder(args);
 

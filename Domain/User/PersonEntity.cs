@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Services.Laundry;
-using Services.User.Enum;
+using Domain.Laundry;
+using Domain.User.Enum;
 
-namespace Services.User;
+namespace Domain.User;
 
 public class PersonEntity
 {

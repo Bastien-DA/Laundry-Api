@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi;
 
-namespace Controllers.Bootstrap;
+namespace Api.Bootstrap;
 
 public static class SwaggerGen
 {
