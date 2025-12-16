@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   generate-sdk:
     runs-on: ubuntu-latest
@@ -40,6 +43,10 @@ jobs:
         run: |
           curl http://localhost:5067/swagger/v1/swagger.json -o swagger.json
 
+      - name: Downgrade OpenAPI 3.1.x -> 3.0.3 (workaround)
+        run: |
+          sed -i 's/"openapi":[ ]*"3\.1\.[0-9]\+"/"openapi":"3.0.3"/' swagger.json || true
+
       # 6. Installer Java pour OpenAPI Generator
       - name: Install Java
         uses: actions/setup-java@v3
@@ -50,7 +57,7 @@ jobs:
       # 7. Installer OpenAPI Generator
       - name: Install OpenAPI Generator
         run: |
-          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.5.0/openapi-generator-cli-7.5.0.jar -O openapi-generator-cli.jar
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.17.0/openapi-generator-cli-7.17.0.jar -O openapi-generator-cli.jar
 
       # 8. Générer le SDK Flutter/Dart
       - name: Generate Flutter SDK
@@ -68,12 +75,32 @@ jobs:
         with:
           channel: stable
           cache: true
+          
+      - name: Show Flutter/Dart versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Patch generated pubspec (Dart 3.8 + json_annotation)
+        working-directory: sdk
+        run: |
+          # force SDK constraint
+          if grep -q "^environment:" pubspec.yaml; then
+            # remplace la ligne sdk: ... si elle existe
+            sed -i 's/^  sdk: .*/  sdk: ">=3.8.0 <4.0.0"/' pubspec.yaml || true
+          fi
+      
+          # force json_annotation >= 4.9.0
+          if grep -q "^  json_annotation:" pubspec.yaml; then
+            sed -i 's/^  json_annotation: .*/  json_annotation: ^4.9.0/' pubspec.yaml
+          fi
+      
+          cat pubspec.yaml
       
       # 4) Pub get + génération des .g.dart / .freezed etc.
       - name: Flutter pub get + build_runner
         working-directory: sdk
         run: |
-          flutter --version
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
 
