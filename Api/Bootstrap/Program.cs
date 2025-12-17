@@ -2,7 +2,8 @@ using Api.Bootstrap;
 using Api.Jwt;
 using Infrastructure.User;
 using Infrastructure.DbConfiguration;
-using Infrastructure.User.Repository; // Nécessaire pour les commentaires XML
+using Infrastructure.User.Repository;
+using Api.Bootstrap.ExceptionHandler; // Nécessaire pour les commentaires XML
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ var services = builder.Services;
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 SwaggerGen.AddSwagger(services);
+ExceptionHandlerServiceRegister.ProblemDetailsExceptionHandlerRegisterService(services);
 
 
 services.AddDbContext<AppDbContext>(options =>
@@ -42,5 +44,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseExceptionHandler();
+app.UseStatusCodePages();
 
 app.Run();

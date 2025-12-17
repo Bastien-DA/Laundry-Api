@@ -1,5 +1,4 @@
 using Domain.User;
-using Repositories.User;
 using System.ComponentModel.DataAnnotations;
 
 namespace Api.Users.Dto;

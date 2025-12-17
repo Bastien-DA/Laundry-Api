@@ -21,7 +21,7 @@ public class CredentialsController(ILogger<CredentialsController> logger, IUserW
     [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult GetUser(int userId)
+    public IActionResult Login(int userId)
     {
         logger.LogInformation("Getting user with id {UserId}", userId);
         return Ok($"User{userId}");

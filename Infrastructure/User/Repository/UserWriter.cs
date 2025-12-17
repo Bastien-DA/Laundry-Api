@@ -1,7 +1,6 @@
 using Domain.User;
 using Infrastructure.DbConfiguration;
 using Microsoft.Extensions.Logging;
-using Repositories.DbConfiguration;
 
 namespace Infrastructure.User.Repository;
 
@@ -9,6 +8,15 @@ public class UserWriter(ILogger<UserWriter> logger) : IUserWriter
 {
     private readonly AppDbContext _db = new AppDbContextFactory().CreateDbContext([]);
 
+    ///<inheritdoc/>
+    public async Task<Guid> GetUser(Guid userId, CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Retrieving the user with id {UserId}", userId);
+        var user = await _db.Users.FindAsync([userId, cancellationToken], cancellationToken);
+        return user == null ? throw new KeyNotFoundException($"User with id {userId} not found.") : user.Id;
+    }
+
+    ///<inheritdoc/>
     public async Task<Guid> Add(UserEntity user, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating the user {User}", user);
