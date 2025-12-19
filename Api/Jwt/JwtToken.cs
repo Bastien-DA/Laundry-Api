@@ -25,4 +25,4 @@ public class JwtToken(IOptions<JwtSettings> jwtSettings) : IJwtToken
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
-}
+} 

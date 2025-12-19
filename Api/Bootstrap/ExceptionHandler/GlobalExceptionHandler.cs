@@ -13,7 +13,7 @@ public class GlobalExceptionHandler(IProblemDetailsService problemDetailsService
             return false;
         }
         
-        httpContext.Response.StatusCode = statusCodeException.StatusCode ?? 500;
+        httpContext.Response.StatusCode = statusCodeException.StatusCode;
         
         var problemDetailsContext = new ProblemDetailsContext
         {

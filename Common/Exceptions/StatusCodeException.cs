@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Common.Exceptions;
+﻿namespace Common.Exceptions;
 
 /// <summary>
 /// Represents an exception that includes an HTTP status code, a title, and a detailed error message.
@@ -14,15 +12,15 @@ public class StatusCodeException(int statusCode, string title, string detail)
     /// <summary>
     /// The HTTP status code associated with the exception.
     /// </summary>
-    public int? StatusCode { get; } = statusCode;
+    public int StatusCode { get; } = statusCode;
 
     /// <summary>
     /// The title of the error.
     /// </summary>
-    public string? Title { get; } = title;
+    public string Title { get; } = title;
 
     /// <summary>
     /// The detailed message of the error.
     /// </summary>
-    public string? Detail { get; }
+    public string Detail { get; } = detail;
 }

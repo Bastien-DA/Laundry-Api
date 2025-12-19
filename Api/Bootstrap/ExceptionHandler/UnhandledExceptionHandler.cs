@@ -13,10 +13,9 @@ public class UnhandledExceptionHandler(IProblemDetailsService problemDetailsServ
             HttpContext = httpContext,
             ProblemDetails = new ProblemDetails
             {
-                Type = exception.GetType().Name,
                 Status = 500,
-                Title = "An unexpected error occurred.",
-                Detail = exception.Message
+                Title = "Internal Server Error",
+                Detail = "An unexpected error occurred."
             }
         };
         await problemDetailsService.TryWriteAsync(problemDetailsContext);

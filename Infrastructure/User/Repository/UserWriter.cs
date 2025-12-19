@@ -1,5 +1,6 @@
 using Domain.User;
 using Infrastructure.DbConfiguration;
+using Infrastructure.User.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.User.Repository;
@@ -13,7 +14,10 @@ public class UserWriter(ILogger<UserWriter> logger) : IUserWriter
     {
         logger.LogInformation("Retrieving the user with id {UserId}", userId);
         var user = await _db.Users.FindAsync([userId, cancellationToken], cancellationToken);
-        return user == null ? throw new KeyNotFoundException($"User with id {userId} not found.") : user.Id;
+        if (user == null) {
+            throw new UserGetException();
+        }
+        return user.Id;
     }
 
     ///<inheritdoc/>

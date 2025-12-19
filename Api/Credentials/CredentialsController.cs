@@ -21,10 +21,10 @@ public class CredentialsController(ILogger<CredentialsController> logger, IUserW
     [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult Login(int userId)
+    public async Task<IActionResult> Login(Guid userId)
     {
-        logger.LogInformation("Getting user with id {UserId}", userId);
-        return Ok($"User{userId}");
+        var user = await userWriter.GetUser(userId, CancellationToken.None);
+        return Ok(user);
     }
 
     /// <summary>
